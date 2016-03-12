@@ -1,0 +1,13 @@
+# *.class
+build/
+Logs/
+datasets/
+dist/
+dist/*
+dist/bundles/*
+ResearchForJewel/build/
+Deployment/*.exe
+*~
+*.csv
+Thumbs.db
+desktop.ini

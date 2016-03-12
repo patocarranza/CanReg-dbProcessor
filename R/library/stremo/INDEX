@@ -1,0 +1,66 @@
+II                      Identity matrix
+LISREL                  Build the 4 basic matrices of the LISREL
+                        "all-y" representation given a set of starting
+                        values.
+RMSEA                   RMSEA
+albert                  Erodium paularense data and model.
+boot.lavaan             Nonparametrical bootstrapping of a SEM model
+                        fit by 'lavaan'.
+cor2cov                 Covariance matrix from a correlation matrix.
+endogenous              Display the endogenous variables of a
+                        lavaanified model
+exogenous               Display the exogenous variables of a
+                        lavaanified model
+factanal.prcomp         Factor analysis.
+fgls                    Generalised least squares.
+fit.nlminb              Fit a structural equation model using 'nlminb'.
+fml                     Maximum-likelihood fitting function.
+grace                   Data and tentative model syntax for the paper
+                        by Grace et al. 2010.
+harnik                  Effects of biological factors on extinction
+                        risk in fossil bivalves.
+is.hermitian            Check if a matrix is Hermitian.
+is.pd                   Do some basic checking to see if a matrix is
+                        positive-definite.
+is.within.bounds        Check if all covariances in a covariance matrix
+                        are within bounds.
+iterator                Minimization of a fitting function.
+jumpstart               Get the starting values of the free parameters
+                        of a model.
+lamb                    Effects of plant species richness and evenness
+                        on soil microbial community diversity and
+                        function.
+lamb2                   Yield components in oat.
+latents                 Display the latent variables of a lavaanified
+                        model
+latta                   Path analysis of natural selection via survival
+                        and fecundity across contrasting environments
+                        in _Avena barbata_.
+laughlin                Determinants of nitrification potential in a
+                        pine forest ecosystem.
+lvnfy                   Set the ground to start analysing a structural
+                        equation model.
+manifests               Display the indicator (manifest) variables of a
+                        lavaanified model
+matrix.representation   Builds the LISREL "all-y" matrix representation
+                        of a model.
+mirror.tri              Place the values below or above the diagonal of
+                        a square matrix in the opposite triangle.
+model.df                Number of degrees of freedom.
+model.type              Displays the type of a structural equations
+                        model.
+observed                Display the observed variables of a lavaanified
+                        model
+pugesek                 Bumpus house sparrow data and model.
+pval                    Returns the p-value given a z-score.
+residuals.sem           Residuals of a fitted path or structural
+                        equations model.
+rmnorm                  Random multivariate normal distribution.
+se.sem                  Standard errors of free parameters.
+sem.matrices            Structural and covariance matrices describing a
+                        path or latent variables model.
+sigma.hat               Calculates the sigma hat given a LISREL "all-y"
+                        matrix representation object.
+stiles                  Fragmentation effects on remnant plant species
+                        richness.
+stremo-package          Learning structural equation modeling.

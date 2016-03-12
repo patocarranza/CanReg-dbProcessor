@@ -1,0 +1,10 @@
+Package: migCR5
+Type: Package
+Title: Migration CR4 to CR5
+Version: 0.1.0
+Author: Betty Carballo
+Maintainer: Betty Carballo <bcarballoquintero@gmail.com>
+Description: 
+License: GPL v3
+LazyData: TRUE
+Built: R 3.2.2; ; 2016-03-12 01:42:47 UTC; windows
