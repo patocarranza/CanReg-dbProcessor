@@ -31,7 +31,7 @@ import java.nio.file.Paths;
 public class AppContext {                
     
     public static final boolean productionBuild = false;    
-    public static final String appVersion = "Ver: 1.00.002";
+    public static final String appVersion = "Ver: 1.01.000";
         
     public static final String techSupportMail = "beatrizcarballo@gmail.com";          
     public static final String appName = "CanReg Database Processor";                  

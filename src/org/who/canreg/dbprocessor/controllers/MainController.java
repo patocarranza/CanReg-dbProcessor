@@ -19,13 +19,15 @@
  */
 package org.who.canreg.dbprocessor.controllers;
 
+import org.who.canreg.dbprocessor.processorSteps.S4_PatientVariablesSelectionController;
+import org.who.canreg.dbprocessor.processorSteps.S3_DatabaseProcessorController;
+import org.who.canreg.dbprocessor.processorSteps.S2_VariableSelectionController;
+import org.who.canreg.dbprocessor.processorSteps.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -39,8 +41,8 @@ import org.who.canreg.dbprocessor.utils.Utils;
 /**
  * Main controller. Initializes and configures controllers.
  * @author Patricio Carranza, Beatriz Carballo
- * @version 1.00.000
- * last update: 23/02/2016
+ * @version 1.01.000
+ * last update: 18/05/2016
  */
 public class MainController {
     
@@ -52,21 +54,21 @@ public class MainController {
     
     public MainController(RootPanel rootPanel) throws Exception {
         this.rootPanel = rootPanel;        
-        //We start the RServe here. If this suceeds, there should'nt be any problems
+        //We start the RServe here. If this suceeds, there shouldn't be any problems
         //regarding R during the life cycle of the app.
         RExecutor rexec = new RExecutor();
     }
 
-    public void selectDatabaseDefinition() {
+    public void A_selectDatabaseDefinition() {
         this.rootPanel.refreshPanelsContent();
         this.rootPanel.hideAllPanels();
-        final File dbDef = this.showDatabaseDefinitionFileSelection();
+        final File dbDef = this.B_showDatabaseDefinitionFileSelection();
         if(dbDef != null) {
-            this.longProcess(new DatabaseDefinitionController(this.rootPanel.getDatabaseDefinitionPanel()), dbDef);
+            this.longProcess(new S0_DatabaseDefinitionController(this.rootPanel.getDatabaseDefinitionPanel()), dbDef);
         }            
     }
     
-    private File showDatabaseDefinitionFileSelection() {
+    private File B_showDatabaseDefinitionFileSelection() {
         File fileSelected = null;        
         JFileChooser chooser = new JFileChooser(AppContext.currentAppPath);        
         FileNameExtensionFilter filter = new FileNameExtensionFilter("XML Database Definition", "xml");
@@ -74,24 +76,26 @@ public class MainController {
         chooser.setDialogTitle("Select a CanReg5 Database Definition file");
         int result = chooser.showOpenDialog(null);
         
-        if (result == JFileChooser.APPROVE_OPTION) 
-            fileSelected = chooser.getSelectedFile();      
+        if (result == JFileChooser.APPROVE_OPTION) {
+            fileSelected = chooser.getSelectedFile();
+        }
         return fileSelected;
     }    
     
-    void databaseDefinitonCompleted() {
+    public void C_databaseDefinitonCompleted() {
         this.rootPanel.getDatabasePanel().setVisible(true);
         this.rootPanel.getDatabasePanel().setMainController(this);
     }
     
-    public void selectDatabaseFile() {
-        final File dbFile = this.showDatabaseFileSelection();
+    public void D_selectDatabaseFile() {
+        final File dbFile = this.E_showDatabaseFileSelection();
         if(dbFile != null) {
-            this.longProcess(new DatabaseMigrationPreparatorController(this.rootPanel.getDatabasePanel()), dbFile);
+            this.longProcess(new S1_DatabaseMigrationPreparatorController(this.rootPanel.getDatabasePanel()), 
+                             dbFile);
         }            
     }
     
-    private File showDatabaseFileSelection() {
+    private File E_showDatabaseFileSelection() {
         File fileSelected = null;        
         JFileChooser chooser = new JFileChooser(AppContext.currentAppPath);                
         chooser.setFileFilter(new DatabaseFileFilter());
@@ -103,19 +107,24 @@ public class MainController {
         return fileSelected;
     }          
     
-    void databaseSelectionCompleted() {        
-        this.longProcess(new VariableSelectionController(this.rootPanel.getVariablesSelectionPanel()));
+    public void F_databaseSelectionCompleted() {        
+        this.longProcess(new S2_VariableSelectionController(this.rootPanel.getVariablesSelectionPanel()));
     }
 
-    public void processDatabase(Object selectedUpdateDateVar, Object selectedMPCodeVar, Enumeration<String> rightPanelVars) {
+    public void G_processDatabase(Object selectedUpdateDateVar,
+                                  Object selectedMPCodeVar, 
+                                  Enumeration<String> rightPanelVars) {
         this.MPCodeVar = (String) selectedMPCodeVar;
         this.UpdateDateVar = (String) selectedUpdateDateVar;
-        this.longProcess(new DatabaseProcessorController(this.rootPanel.getDatabaseErrorsPanel()), 
-                         selectedUpdateDateVar, selectedMPCodeVar, rightPanelVars);
+        this.longProcess(new S3_DatabaseProcessorController(this.rootPanel.getDatabaseErrorsPanel()), 
+                         selectedUpdateDateVar, 
+                         selectedMPCodeVar,
+                         rightPanelVars);
     }
     
-    void databaseProcessingCompleted() {
-        this.longProcess(new PatientVariablesSelectionController(this.rootPanel.getPatientVariablesSelectionPanel()), 
+    public void H_databaseProcessingCompleted() {
+        this.longProcess(new S4_PatientVariablesSelectionController(
+                                this.rootPanel.getPatientVariablesSelectionPanel()), 
                          this.MPCodeVar);
     }
     
@@ -123,15 +132,26 @@ public class MainController {
         this.MPSequenceVar = MPSequence;
         this.registryNumberVar = registryNumber;
         this.longProcess(new SourcesSelectionController(this.rootPanel.getSourcesSelectionPanel()), 
-                         this.MPCodeVar, this.UpdateDateVar, registryNumber, MPTotal, MPSequence);
+                         this.MPCodeVar, 
+                         this.UpdateDateVar, 
+                         registryNumber,
+                         MPTotal, 
+                         MPSequence);
     } 
     
-    public void sourcesSelected(int ammountOfSources, String[] labels, ArrayList<String[]> selectedValues) {
-        this.longProcess(new FinalProcessController(), ammountOfSources, labels, selectedValues, 
-                         this.MPSequenceVar, this.registryNumberVar);
+    public void sourcesSelected(int ammountOfSources, 
+                                String[] labels, 
+                                ArrayList<String[]> selectedValues) {
+        this.longProcess(new FinalProcessController(), 
+                        ammountOfSources, 
+                        labels, 
+                        selectedValues, 
+                        this.MPSequenceVar, 
+                        this.registryNumberVar);
     }
     
-    private void longProcess(final LongProcessStrategy strategy, final Object... parameters) {                                            
+    private void longProcess(final LongProcessStrategy strategy, 
+                             final Object... parameters) {                                            
         Main.startLoading();         
         Utils.startTimer();        
 

@@ -149,7 +149,7 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProcessDbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessDbActionPerformed
-        this.mainController.selectDatabaseDefinition();
+        this.mainController.A_selectDatabaseDefinition();
     }//GEN-LAST:event_ProcessDbActionPerformed
 
     private class WaitLayerUI extends LayerUI<JPanel> implements ActionListener {

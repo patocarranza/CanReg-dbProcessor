@@ -54,23 +54,23 @@ public class RootPanel extends javax.swing.JPanel {
         this.sourcesSelectionPanel1.setVisible(false);
     }
     
-    public DatabaseDefinitionPanel getDatabaseDefinitionPanel() {
+    public S1_DatabaseDefinitionPanel getDatabaseDefinitionPanel() {
         return this.databaseDefinitionPanel1;
     }
     
-    public VariablesSelectionPanel getVariablesSelectionPanel() {
+    public S2_VariablesSelectionPanel getVariablesSelectionPanel() {
         return this.variablesSelectionPanel1;        
     }
     
-    public DatabaseProcessingErrorsPanel getDatabaseErrorsPanel() {
+    public S3_DatabaseProcessingErrorsPanel getDatabaseErrorsPanel() {
         return this.databaseProcessingErrorsPanel1;
     }
 
-    public DatabasePanel getDatabasePanel() {
+    public S1_DatabasePanel getDatabasePanel() {
         return this.databasePanel1;
     }
     
-    public PatientVariablesSelectionPanel getPatientVariablesSelectionPanel() {
+    public S4_PatientVariablesSelectionPanel getPatientVariablesSelectionPanel() {
         return this.patientVariablesSelectionPanel1;
     }
     
@@ -83,12 +83,12 @@ public class RootPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        databaseDefinitionPanel1 = new org.who.canreg.dbprocessor.gui.DatabaseDefinitionPanel();
-        databasePanel1 = new org.who.canreg.dbprocessor.gui.DatabasePanel();
+        databaseDefinitionPanel1 = new org.who.canreg.dbprocessor.gui.S1_DatabaseDefinitionPanel();
+        databasePanel1 = new org.who.canreg.dbprocessor.gui.S1_DatabasePanel();
         jPanel2 = new javax.swing.JPanel();
-        variablesSelectionPanel1 = new org.who.canreg.dbprocessor.gui.VariablesSelectionPanel();
-        databaseProcessingErrorsPanel1 = new org.who.canreg.dbprocessor.gui.DatabaseProcessingErrorsPanel();
-        patientVariablesSelectionPanel1 = new org.who.canreg.dbprocessor.gui.PatientVariablesSelectionPanel();
+        variablesSelectionPanel1 = new org.who.canreg.dbprocessor.gui.S2_VariablesSelectionPanel();
+        databaseProcessingErrorsPanel1 = new org.who.canreg.dbprocessor.gui.S3_DatabaseProcessingErrorsPanel();
+        patientVariablesSelectionPanel1 = new org.who.canreg.dbprocessor.gui.S4_PatientVariablesSelectionPanel();
         sourcesSelectionPanel1 = new org.who.canreg.dbprocessor.gui.SourcesSelectionPanel();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
@@ -117,15 +117,15 @@ public class RootPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.who.canreg.dbprocessor.gui.DatabaseDefinitionPanel databaseDefinitionPanel1;
-    private org.who.canreg.dbprocessor.gui.DatabasePanel databasePanel1;
-    private org.who.canreg.dbprocessor.gui.DatabaseProcessingErrorsPanel databaseProcessingErrorsPanel1;
+    private org.who.canreg.dbprocessor.gui.S1_DatabaseDefinitionPanel databaseDefinitionPanel1;
+    private org.who.canreg.dbprocessor.gui.S1_DatabasePanel databasePanel1;
+    private org.who.canreg.dbprocessor.gui.S3_DatabaseProcessingErrorsPanel databaseProcessingErrorsPanel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.who.canreg.dbprocessor.gui.PatientVariablesSelectionPanel patientVariablesSelectionPanel1;
+    private org.who.canreg.dbprocessor.gui.S4_PatientVariablesSelectionPanel patientVariablesSelectionPanel1;
     private org.who.canreg.dbprocessor.gui.SourcesSelectionPanel sourcesSelectionPanel1;
-    private org.who.canreg.dbprocessor.gui.VariablesSelectionPanel variablesSelectionPanel1;
+    private org.who.canreg.dbprocessor.gui.S2_VariablesSelectionPanel variablesSelectionPanel1;
     // End of variables declaration//GEN-END:variables
 
        
