@@ -1,13 +1,12 @@
-# *.class
 build/
 Logs/
 datasets/
 dist/
 dist/*
 dist/bundles/*
-ResearchForJewel/build/
 Deployment/*.exe
 *~
 *.csv
+*.lnk
 Thumbs.db
 desktop.ini
