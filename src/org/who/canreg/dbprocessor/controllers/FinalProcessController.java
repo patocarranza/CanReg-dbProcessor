@@ -75,11 +75,12 @@ public class FinalProcessController implements LongProcessStrategy {
         
         JFileChooser chooser = new JFileChooser(AppContext.currentAppPath);  
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setSelectedFile(AppContext.currentAppPath);
+        //chooser.setSelectedFile(AppContext.currentAppPath);
         chooser.setDialogTitle("Choose a folder to save the 3 datasets");
         int result = chooser.showSaveDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File destination = chooser.getSelectedFile();
+            AppContext.currentAppPath = chooser.getCurrentDirectory();
             boolean finalResult = ((REXPLogical) rexec.execFunction("check.save(total.patients, MP.data , non.MP.data, " +
                                                                    "patient.data, tumour.data, source.data, " +
                                                                    "\"" + Utils.fixPath(destination.getAbsolutePath()) + "\")")).isTRUE()[0];

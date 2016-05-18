@@ -159,14 +159,15 @@ public class S3_DatabaseProcessorController implements LongProcessStrategy {
         chooser.setSelectedFile(new File(AppContext.currentAppPath, "error file.csv"));
         chooser.setDialogTitle("Choose a folder to save the error file");
         int result = chooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {            
+        if (result == JFileChooser.APPROVE_OPTION) {
+            AppContext.currentAppPath = chooser.getCurrentDirectory();            
             Main.startLoading();         
             Utils.startTimer();        
             SwingWorker<Void, Void> mySwingWorker = new SwingWorker<Void, Void>(){
                 @Override
                 protected Void doInBackground() {                        
                     try {
-                        File destination = chooser.getSelectedFile();
+                        File destination = chooser.getSelectedFile();                        
                         RExecutor rexec = new RExecutor();
                         rexec.execVoidFunction("write.csv(error.MP.cases, \"" + Utils.fixPath(destination.getAbsolutePath()) + "\", row.names=FALSE)");
                     }

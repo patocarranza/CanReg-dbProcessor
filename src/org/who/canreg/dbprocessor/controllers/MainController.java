@@ -78,6 +78,7 @@ public class MainController {
         
         if (result == JFileChooser.APPROVE_OPTION) {
             fileSelected = chooser.getSelectedFile();
+            AppContext.currentAppPath = chooser.getCurrentDirectory();
         }
         return fileSelected;
     }    
@@ -102,8 +103,11 @@ public class MainController {
         chooser.setDialogTitle("Select CanReg4 Database to migrate");
         int result = chooser.showOpenDialog(null);
         
-        if (result == JFileChooser.APPROVE_OPTION) 
-            fileSelected = chooser.getSelectedFile();      
+        if (result == JFileChooser.APPROVE_OPTION) {
+            fileSelected = chooser.getSelectedFile();
+            AppContext.currentAppPath = chooser.getCurrentDirectory();
+        }
+        
         return fileSelected;
     }          
     
