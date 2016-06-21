@@ -26,7 +26,7 @@ options(scipen = 999)
   
   
   #Import the data.file you want to migrate
-  mig.data <- read.csv("C://Users//patri_000//Google Drive//Work//WHO//CanReg_Database_Processor//datasets//cr4-pm.csv",stringsAsFactors = FALSE)
+  mig.data <- read.csv("C://Users//patri_000//Google Drive//Work//WHO//CanReg_Database_Processor//datasets//data.test.csv",stringsAsFactors = FALSE)
  
   #The Patient table has a column that permits identify each patient in an unique way,
   #but sometimes this variable is not available, so the best way is to use de PMCod that permits
@@ -45,12 +45,12 @@ options(scipen = 999)
   #non.MP.data
   non.MP.data <- subset(mig.data,is.na(mig.data[,names(mig.data) %in% c("PMCod")]) | mig.data[,names(mig.data) %in% c("PMCod")]=="")
   
-  if ( ! mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod")){
-    non.MP.data <- data.frame(rbind(non.MP.data,
-                                    MP.data[MP.data[,c("PMCod")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod"),]),
-                              stringsAsFactors = FALSE)
-    MP.data <- MP.data[!(MP.data[,c("PMCod")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod")),]
-  }else{NULL}
+#  if ( ! mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod")){
+#    non.MP.data <- data.frame(rbind(non.MP.data,
+#                                    MP.data[MP.data[,c("PMCod")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod"),]),
+#                              stringsAsFactors = FALSE)
+#    MP.data <- MP.data[!(MP.data[,c("PMCod")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod")),]
+#  }else{NULL}
   
   if (mig.MP.non.MP.codes(MP.data, non.MP.data, "PMCod")!="FALSE"){
     non.MP.data <- data.frame(rbind(non.MP.data,
