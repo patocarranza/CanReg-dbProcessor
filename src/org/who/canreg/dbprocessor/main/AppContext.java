@@ -30,13 +30,11 @@ import java.nio.file.Paths;
  */
 public class AppContext {                
     
-    public static final boolean productionBuild = false;    
-    public static final String appVersion = "Ver: 1.01.000";
+    public static final boolean productionBuild = true;    
+    public static final String appVersion = "Ver: 1.02.000.21062016";
         
     public static final String techSupportMail = "beatrizcarballo@gmail.com";          
     public static final String appName = "CanReg Database Processor";                  
     
-    public static File currentAppPath = Paths.get("").toAbsolutePath().toFile();
-    //public static final File programData = new File(System.getenv("ProgramData"));      
-    //public static final File reportsTempFolder = new File(programData, "CanReg Database Processor Temp files");       
+    public static File currentAppPath = Paths.get("").toAbsolutePath().toFile();      
 }

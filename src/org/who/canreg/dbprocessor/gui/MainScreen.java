@@ -19,31 +19,13 @@
  */
 package org.who.canreg.dbprocessor.gui;
 
-import java.awt.AWTEvent;
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLayer;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 import javax.swing.plaf.LayerUI;
 import org.who.canreg.dbprocessor.controllers.MainController;
-import org.who.canreg.dbprocessor.main.AppContext;
-import org.who.canreg.dbprocessor.main.Main;
+import org.who.canreg.dbprocessor.main.*;
 import org.who.canreg.dbprocessor.utils.Utils;
 
 /**
@@ -121,6 +103,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         ProcessDb = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        AboutBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -141,6 +124,15 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("About");
+
+        AboutBtn.setText("Version & Info");
+        AboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AboutBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(AboutBtn);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -151,6 +143,13 @@ public class MainScreen extends javax.swing.JFrame {
     private void ProcessDbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessDbActionPerformed
         this.mainController.A_selectDatabaseDefinition();
     }//GEN-LAST:event_ProcessDbActionPerformed
+
+    private void AboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutBtnActionPerformed
+        AboutDialog dialog = new AboutDialog();
+        dialog.pack();       
+        dialog.setLocationRelativeTo(this);        
+        dialog.setVisible(true);   
+    }//GEN-LAST:event_AboutBtnActionPerformed
 
     private class WaitLayerUI extends LayerUI<JPanel> implements ActionListener {
         private boolean mIsRunning;
@@ -290,6 +289,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AboutBtn;
     private javax.swing.JMenuItem ProcessDb;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -45,8 +45,8 @@ import org.who.canreg.dbprocessor.utils.Utils;
  * the database has no errors. All errors are output to a list present in 
  * S3_DatabaseProcessingErrorsPanel. 
  * @author Patricio Carranza, Beatriz Carballo
- * @version 1.03.000
- * last update: 18/05/2016
+ * @version 1.04.000
+ * last update: 21/06/2016
  */
 public class S3_DatabaseProcessorController implements LongProcessStrategy {
     
@@ -77,13 +77,13 @@ public class S3_DatabaseProcessorController implements LongProcessStrategy {
         
         rexec.execVoidFunction("MP.data <- subset(mig.data,mig.data[,names(mig.data) %in% c(\"" + MPCodeVar + "\")]!=\"\")");
         rexec.execVoidFunction("non.MP.data <- subset(mig.data,is.na(mig.data[,names(mig.data) %in% c(\"" + MPCodeVar + "\")]) "
-                                                    + " | mig.data[,names(mig.data) %in% c(\"" + MPCodeVar + "\")]==\"\")");         
-        rexec.execVoidFunction("if ( ! mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\")){\n" +
-"    non.MP.data <- data.frame(rbind(non.MP.data,\n" +
-"                                    MP.data[MP.data[,c(\"" + MPCodeVar + "\")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\"),]),\n" +
-"                              stringsAsFactors = FALSE)\n" +
-"    MP.data <- MP.data[!(MP.data[,c(\"" + MPCodeVar + "\")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\")),]\n" +
-"  }else{NULL}");                               
+                                                    + " | mig.data[,names(mig.data) %in% c(\"" + MPCodeVar + "\")]==\"\")");
+        rexec.execVoidFunction("if (mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\") !=\"FALSE\"){\n" +
+        "    non.MP.data <- data.frame(rbind(non.MP.data,\n" +
+        "                                    MP.data[MP.data[,c(\"" + MPCodeVar + "\")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\"),]),\n" +
+        "                              stringsAsFactors = FALSE)\n" +
+        "    MP.data <- MP.data[!(MP.data[,c(\"" + MPCodeVar + "\")] %in%  mig.MP.non.MP.codes(MP.data, non.MP.data, \"" + MPCodeVar + "\")),]\n" +
+        "  }else{NULL}");
         rexec.execVoidFunction("error.MP.cases <- mp.error(MP.data, \n" +
                                          "\"" + updateDateVar + "\",#update date\n" +
                                          "c(" + str.toString() + ")," +
