@@ -135,4 +135,4 @@ options(scipen = 999)
              patient.data,
              tumour.data,
              source.data,
-             "C://Users//patri_000//Google Drive//Work//WHO//CanReg Database Processor//error")
+             "C://Users//patri_000//Google Drive//Work//WHO//CanReg_Database_Processor")
