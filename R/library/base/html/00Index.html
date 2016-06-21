@@ -5,13 +5,13 @@
 <link rel="stylesheet" type="text/css" href="R.css" />
 </head><body>
 <h1> The R Base Package
-<img class="toplogo" src="../../../doc/html/logo.jpg" alt="[R logo]" />
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
 </h1>
 <hr/>
 <div style="text-align: center;">
 <a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
 <a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
-</div><h2>Documentation for package &lsquo;base&rsquo; version 3.2.3</h2>
+</div><h2>Documentation for package &lsquo;base&rsquo; version 3.3.0</h2>
 
 <ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
 <li><a href="../demo">Code demos</a>.  Use <a href="../../utils/help/demo">demo()</a> to run them.</li>
@@ -109,7 +109,7 @@
 <tr><td style="width: 25%;"><a href="Trig.html">arctan</a></td>
 <td>Trigonometric Functions</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">Arg</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="args.html">args</a></td>
 <td>Argument List of a Function</td></tr>
 <tr><td style="width: 25%;"><a href="Arithmetic.html">Arithmetic</a></td>
@@ -139,7 +139,7 @@
 <tr><td style="width: 25%;"><a href="srcfile.html">as.character.srcref</a></td>
 <td>References to source files</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">as.complex</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="as.data.frame.html">as.data.frame</a></td>
 <td>Coerce to a Data Frame</td></tr>
 <tr><td style="width: 25%;"><a href="as.data.frame.html">as.data.frame.AsIs</a></td>
@@ -340,6 +340,8 @@
 <td>Combine Values into a Vector or List</td></tr>
 <tr><td style="width: 25%;"><a href="Dates.html">c.Date</a></td>
 <td>Date Class</td></tr>
+<tr><td style="width: 25%;"><a href="difftime.html">c.difftime</a></td>
+<td>Time Intervals</td></tr>
 <tr><td style="width: 25%;"><a href="noquote.html">c.noquote</a></td>
 <td>Class for 'no quote' Printing of Character Strings</td></tr>
 <tr><td style="width: 25%;"><a href="numeric_version.html">c.numeric_version</a></td>
@@ -376,6 +378,8 @@
 <td>Character Translation and Casefolding</td></tr>
 <tr><td style="width: 25%;"><a href="DateTimeClasses.html">check_tzones</a></td>
 <td>Date-Time Classes</td></tr>
+<tr><td style="width: 25%;"><a href="chkDots.html">chkDots</a></td>
+<td>Warn About Extraneous Arguments in the "..." of Its Caller</td></tr>
 <tr><td style="width: 25%;"><a href="chol.html">chol</a></td>
 <td>The Choleski Decomposition</td></tr>
 <tr><td style="width: 25%;"><a href="chol2inv.html">chol2inv</a></td>
@@ -421,7 +425,7 @@
 <tr><td style="width: 25%;"><a href="groupGeneric.html">Complex</a></td>
 <td>S3 Group Generic Functions</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">complex</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="conditions.html">computeRestarts</a></td>
 <td>Condition Handling and Recovery</td></tr>
 <tr><td style="width: 25%;"><a href="conditions.html">condition</a></td>
@@ -439,7 +443,7 @@
 <tr><td style="width: 25%;"><a href="conflicts.html">conflicts</a></td>
 <td>Search for Masked Objects on the Search Path</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">Conj</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="connections.html">connection</a></td>
 <td>Functions to Manipulate Connections (Files, URLs, ...)</td></tr>
 <tr><td style="width: 25%;"><a href="connections.html">connections</a></td>
@@ -602,6 +606,8 @@
 <td>Encode Character Vector as for Printing</td></tr>
 <tr><td style="width: 25%;"><a href="Encoding.html">Encoding</a></td>
 <td>Read or Set the Declared Encodings for a Character Vector</td></tr>
+<tr><td style="width: 25%;"><a href="startsWith.html">endsWith</a></td>
+<td>Does String Start or End With Another String?</td></tr>
 <tr><td style="width: 25%;"><a href="substitute.html">enquote</a></td>
 <td>Substituting and Quoting Expressions</td></tr>
 <tr><td style="width: 25%;"><a href="environment.html">env.profile</a></td>
@@ -625,7 +631,7 @@
 <tr><td style="width: 25%;"><a href="Log.html">exp</a></td>
 <td>Logarithms and Exponentials</td></tr>
 <tr><td style="width: 25%;"><a href="expand.grid.html">expand.grid</a></td>
-<td>Create a Data Frame from All Combinations of Factors</td></tr>
+<td>Create a Data Frame from All Combinations of Factor Variables</td></tr>
 <tr><td style="width: 25%;"><a href="Log.html">expm1</a></td>
 <td>Logarithms and Exponentials</td></tr>
 <tr><td style="width: 25%;"><a href="expression.html">expression</a></td>
@@ -814,6 +820,8 @@
 <td>S3 Group Generic Functions</td></tr>
 <tr><td style="width: 25%;"><a href="groupGeneric.html">groupGeneric</a></td>
 <td>S3 Group Generic Functions</td></tr>
+<tr><td style="width: 25%;"><a href="grouping.html">grouping</a></td>
+<td>Grouping Permutation</td></tr>
 <tr><td style="width: 25%;"><a href="EnvVar.html">GSC</a></td>
 <td>Environment Variables</td></tr>
 <tr><td style="width: 25%;"><a href="grep.html">gsub</a></td>
@@ -855,7 +863,7 @@
 <tr><td style="width: 25%;"><a href="ifelse.html">ifelse</a></td>
 <td>Conditional Element Selection</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">Im</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="Control.html">in</a></td>
 <td>Control Flow</td></tr>
 <tr><td style="width: 25%;"><a href="is.finite.html">Inf</a></td>
@@ -901,7 +909,7 @@
 <tr><td style="width: 25%;"><a href="character.html">is.character</a></td>
 <td>Character Vectors</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">is.complex</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="as.data.frame.html">is.data.frame</a></td>
 <td>Coerce to a Data Frame</td></tr>
 <tr><td style="width: 25%;"><a href="double.html">is.double</a></td>
@@ -999,7 +1007,7 @@
 <tr><td style="width: 25%;"><a href="seek.html">isSeekable</a></td>
 <td>Functions to Reposition Connections</td></tr>
 <tr><td style="width: 25%;"><a href="isSymmetric.html">isSymmetric</a></td>
-<td>Test if a Matrix or other Object is Symmetric</td></tr>
+<td>Test if a Matrix or other Object is Symmetric (Hermitian)</td></tr>
 <tr><td style="width: 25%;"><a href="Logic.html">isTRUE</a></td>
 <td>Logical Operators</td></tr>
 </table>
@@ -1075,7 +1083,7 @@
 <td>Special Functions of Mathematics</td></tr>
 <tr><td style="width: 25%;"><a href="Special.html">lgamma</a></td>
 <td>Special Functions of Mathematics</td></tr>
-<tr><td style="width: 25%;"><a href="curlVersion.html">libcurlVersion</a></td>
+<tr><td style="width: 25%;"><a href="libcurlVersion.html">libcurlVersion</a></td>
 <td>Report Version of libcurl</td></tr>
 <tr><td style="width: 25%;"><a href="library.html">library</a></td>
 <td>Loading/Attaching and Listing of Packages</td></tr>
@@ -1215,7 +1223,7 @@
 <tr><td style="width: 25%;"><a href="missing.html">missing</a></td>
 <td>Does a Formal Argument have a Value?</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">Mod</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="mode.html">mode</a></td>
 <td>The (Storage) Mode of an Object</td></tr>
 <tr><td style="width: 25%;"><a href="Constants.html">month.abb</a></td>
@@ -1560,7 +1568,7 @@
 <tr><td style="width: 25%;"><a href="RdUtils.html">Rdconv</a></td>
 <td>Utilities for Processing Rd Files</td></tr>
 <tr><td style="width: 25%;"><a href="complex.html">Re</a></td>
-<td>Complex Vectors</td></tr>
+<td>Complex Numbers and Basic Functionality</td></tr>
 <tr><td style="width: 25%;"><a href="dcf.html">read.dcf</a></td>
 <td>Read and Write Data in DCF Format</td></tr>
 <tr><td style="width: 25%;"><a href="readBin.html">readBin</a></td>
@@ -1872,6 +1880,8 @@
 <td>References to source files</td></tr>
 <tr><td style="width: 25%;"><a href="srcfile.html">srcref-class</a></td>
 <td>References to source files</td></tr>
+<tr><td style="width: 25%;"><a href="startsWith.html">startsWith</a></td>
+<td>Does String Start or End With Another String?</td></tr>
 <tr><td style="width: 25%;"><a href="Startup.html">Startup</a></td>
 <td>Initialization at Start of an R Session</td></tr>
 <tr><td style="width: 25%;"><a href="showConnections.html">stderr</a></td>
@@ -1892,6 +1902,8 @@
 <td>Date-time Conversion Functions to and from Character</td></tr>
 <tr><td style="width: 25%;"><a href="strptime.html">strptime</a></td>
 <td>Date-time Conversion Functions to and from Character</td></tr>
+<tr><td style="width: 25%;"><a href="strrep.html">strrep</a></td>
+<td>Repeat the Elements of a Character Vector</td></tr>
 <tr><td style="width: 25%;"><a href="strsplit.html">strsplit</a></td>
 <td>Split the Elements of a Character Vector</td></tr>
 <tr><td style="width: 25%;"><a href="strtoi.html">strtoi</a></td>
@@ -2076,7 +2088,7 @@
 <tr><td style="width: 25%;"><a href="trace.html">trace</a></td>
 <td>Interactive Tracing and Debugging of Calls to a Function or Method</td></tr>
 <tr><td style="width: 25%;"><a href="traceback.html">traceback</a></td>
-<td>Print Call Stacks</td></tr>
+<td>Get and Print Call Stacks</td></tr>
 <tr><td style="width: 25%;"><a href="tracemem.html">tracemem</a></td>
 <td>Trace Copying of Objects</td></tr>
 <tr><td style="width: 25%;"><a href="trace.html">tracingState</a></td>
@@ -2173,6 +2185,10 @@
 <h2><a name="V">-- V --</a></h2>
 
 <table width="100%">
+<tr><td style="width: 25%;"><a href="validUTF8.html">validEnc</a></td>
+<td>Check if a Character Vector is Validly Encoded</td></tr>
+<tr><td style="width: 25%;"><a href="validUTF8.html">validUTF8</a></td>
+<td>Check if a Character Vector is Validly Encoded</td></tr>
 <tr><td style="width: 25%;"><a href="lapply.html">vapply</a></td>
 <td>Apply a Function over a List or Vector</td></tr>
 <tr><td style="width: 25%;"><a href="vector.html">vector</a></td>
@@ -2445,6 +2461,8 @@
 <td>Random Number Generation</td></tr>
 <tr><td style="width: 25%;"><a href="Startup.html">.Renviron</a></td>
 <td>Initialization at Start of an R Session</td></tr>
+<tr><td style="width: 25%;"><a href="search.html">.rmpkg</a></td>
+<td>Give Search Path for R Objects</td></tr>
 <tr><td style="width: 25%;"><a href="colSums.html">.rowMeans</a></td>
 <td>Form Row and Column Sums and Means</td></tr>
 <tr><td style="width: 25%;"><a href="colSums.html">.rowSums</a></td>
@@ -2458,7 +2476,9 @@
 <tr><td style="width: 25%;"><a href="zutils.html">.standard_regexps</a></td>
 <td>Miscellaneous Internal/Programming Utilities</td></tr>
 <tr><td style="width: 25%;"><a href="traceback.html">.Traceback</a></td>
-<td>Print Call Stacks</td></tr>
+<td>Get and Print Call Stacks</td></tr>
+<tr><td style="width: 25%;"><a href="traceback.html">.traceback</a></td>
+<td>Get and Print Call Stacks</td></tr>
 <tr><td style="width: 25%;"><a href="userhooks.html">.userHooksEnv</a></td>
 <td>Functions to Get and Set Hooks for Load, Attach, Detach and Unload</td></tr>
 <tr><td style="width: 25%;"><a href="cbind.html">.__H__.cbind</a></td>
@@ -2531,6 +2551,8 @@
 <td>Date-Time Classes</td></tr>
 <tr><td style="width: 25%;"><a href="Extract.html">[.simple.list</a></td>
 <td>Extract or Replace Parts of an Object</td></tr>
+<tr><td style="width: 25%;"><a href="table.html">[.table</a></td>
+<td>Cross Tabulation and Table Creation</td></tr>
 <tr><td style="width: 25%;"><a href="warnings.html">[.warnings</a></td>
 <td>Print Warning Messages</td></tr>
 <tr><td style="width: 25%;"><a href="Extract.html">[&lt;-</a></td>

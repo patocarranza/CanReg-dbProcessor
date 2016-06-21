@@ -30,7 +30,7 @@ import java.nio.file.Paths;
  */
 public class AppContext {                
     
-    public static final boolean productionBuild = true;    
+    public static final boolean productionBuild = false;    
     public static final String appVersion = "Ver: 1.01.000";
         
     public static final String techSupportMail = "beatrizcarballo@gmail.com";          

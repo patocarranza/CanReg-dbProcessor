@@ -46,14 +46,18 @@ GSC	find_gs_cmd
 help.ports	startDynamicHelp
 HTMLheader	HTMLheader
 installFoundDepends	installFoundDepends
+langElts	QC
 latexToUtf8	parseLatex
 list_files_with_exts	fileutils
 list_files_with_type	fileutils
 loadPkgRdMacros	loadRdMacros
 loadRdMacros	loadRdMacros
 makeLazyLoading	makeLazyLoading
+makevars_site	makevars
+makevars_user	makevars
 make_translations_pkg	make_translations_pkg
 md5sum	md5sum
+nonS3methods	QC
 package.dependencies	package.dependencies
 package_dependencies	package_dependencies
 parseLatex	parseLatex
@@ -75,6 +79,7 @@ print.undoc	undoc
 pskill	pskill
 psnice	psnice
 QC	QC
+Rcmd	Rcmd
 Rd2ex	Rd2HTML
 Rd2HTML	Rd2HTML
 Rd2latex	Rd2HTML

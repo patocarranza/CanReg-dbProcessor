@@ -2,6 +2,7 @@
 Adobe_glyphs            Conversion Tables between Character Sets
 HTMLheader              Generate a standard HTML header for R help
 QC                      QC Checks for R Code and/or Documentation
+Rcmd                    R CMD Interface
 Rd2HTML                 Rd Converters
 Rd2txt_options          Set formatting options for text help
 RdTextFilter            Select text in an Rd file.
@@ -39,6 +40,7 @@ installFoundDepends     A function to install unresolved dependencies
 loadRdMacros            Load user-defined Rd help system macros.
 make_translations_pkg   Package the Current Translations in the R
                         sources
+makevars_user           User and Site Compilation Variables
 md5sum                  Compute MD5 Checksums
 package.dependencies    Check Package Dependencies
 package_dependencies    Computations on the Dependency Hierarchy of

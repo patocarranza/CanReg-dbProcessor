@@ -33,7 +33,8 @@ class RserveService {
 
     //Relative paths of R implementations. It's relative because both of them are included
     //with this app (nevermind if the user has an implementation installed)
-    private static final String RSCRIPT_RELATIVE_PATH_64 = "R\\bin\\x64\\Rscript.exe";
+    private static final String RSCRIPT_RELATIVE_PATH_x64 = "R\\bin\\x64\\Rscript.exe";
+    private static final String RSCRIPT_RELATIVE_PATH_x86 = "R\\bin\\i386\\Rscript.exe";
     
     //The R folder (r32 path or r64 path)
     private static File rFolder;
@@ -67,7 +68,9 @@ class RserveService {
             //the environment variable "Program files (x86)" will exist, while on a 32-bit
             //Windows it won't exist (instead only Program Files will exist).
             if(System.getenv("ProgramFiles(x86)") != null) 
-                rFolder = new File(RSCRIPT_RELATIVE_PATH_64); 
+                rFolder = new File(RSCRIPT_RELATIVE_PATH_x64);
+            else
+                rFolder = new File(RSCRIPT_RELATIVE_PATH_x86);
             
             //For some reason, the R envionment packed with this app might not be there...
             if( ! rFolder.exists()) {                

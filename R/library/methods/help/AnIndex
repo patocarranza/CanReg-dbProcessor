@@ -233,6 +233,7 @@ insertMethodInEmptyList	MethodsList
 insertSource	evalSource
 integer-class	BasicClasses
 integrate-class	setOldClass
+internalDispatchMethod-class	RMethodUtils
 is	is
 isClass	findClass
 isClassDef	RClassUtils
@@ -318,7 +319,6 @@ NULL-class	BasicClasses
 numeric-class	BasicClasses
 ObjectsWithPackage-class	ObjectsWithPackage-class
 oldClass-class	setOldClass
-OldEvalSelectedMethod	MethodSupport
 Ops	S4groupGeneric
 Ops,array,array-method	StructureClasses
 Ops,array,structure-method	StructureClasses
