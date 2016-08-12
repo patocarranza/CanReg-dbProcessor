@@ -70,6 +70,16 @@ public class RExecutor {
         }
     }           
     
+    /**
+     * These packages have been previously installed in an R terminal using
+     * the command install.packages(). Examples:
+     * - In case we download a zip of the library we use
+     * $ Rscript.exe -e "install.packages('XML_3.98-1.1.zip', repos = NULL)" 
+     * - In case we let the R environment decide where to obtain the library
+     * $ Rscript.exe -e "install.packages(XML)"
+     * @throws RserveException
+     * @throws SocketException 
+     */
     private void loadPackages() throws RserveException, SocketException {
         execFunction("require(splitstackshape)");
         execFunction("require(XML)");

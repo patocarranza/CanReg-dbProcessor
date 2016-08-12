@@ -21,6 +21,7 @@ package org.who.canreg.dbprocessor.r;
 
 import java.io.*;
 import org.rosuda.REngine.Rserve.*;
+import org.who.canreg.dbprocessor.utils.Utils;
 
 /**
  * Class in charge of preparing the R environment, handling Rserve 
@@ -35,19 +36,17 @@ class RserveService {
     //with this app (nevermind if the user has an implementation installed)
     private static final String RSCRIPT_RELATIVE_PATH_x64 = "R\\bin\\x64\\Rscript.exe";
     private static final String RSCRIPT_RELATIVE_PATH_x86 = "R\\bin\\i386\\Rscript.exe";
+    private static final String RSCRIPT_LIB_PATH = "R\\library";
     
     //The R folder (r32 path or r64 path)
-    private static File rFolder;
-
-    //The libraries in R that must be installed in order for this app to work
-    private static final String[] libraries = new String[]{"Rserve", "XML"};        
+    private static File rFolder; 
     
     
     static void startService() throws IOException, RserveException,
                                       RserveLibraryNotFoundException, 
                                       REnvironmentNotFoundException {        
         prepareREnvironment(); 
-        startRserve("--no-save --slave --RS-encoding utf8");
+        startRserve("--vanilla --slave --RS-encoding utf8");
     }
     
     /**
@@ -75,64 +74,10 @@ class RserveService {
             //For some reason, the R envionment packed with this app might not be there...
             if( ! rFolder.exists()) {                
                 throw new REnvironmentNotFoundException(rFolder.getAbsolutePath());
-            }            
-            
-            //Since the idea is to ship the app with all the configurations done,
-            //ALL REQUIRED PACKAGES ARE CONSIDERED PREVIOUSLY INSTALLED. 
-            //Every package was installed, from windows cmd, like this:
-            //$R32\bin> Rscript.exe -e "install.packages('XML_3.98-1.1.zip', repos = NULL)"
-            //And the location of those installed packages is given by
-            //$R32\bin> Rscript.exe -e ".libPaths()" (which should return "R32\library")            
-            //Anyway, we leave this here just in case.
-            /*try {                
-                Process install = Runtime.getRuntime().exec(currentDisc + " && " + "\"" + rFolder + "\" -e \"install.packages('Rserve.zip', repos = NULL);\"");
-                Process install2 = Runtime.getRuntime().exec(currentDisc + " && " + "\"" + rFolder + "\" -e \"install.packages('XML_3.98-1.1.zip', repos = NULL);\"");
-            }
-            catch(IOException io) {
-                io.printStackTrace();
-            }*/
-            
-            /*for(String str : libraries) {
-                 loadLibrary(str);
-            }*/
+            }                                    
         }
     }    
-    
-    /*
-     * Loads the library into memory, to be used by R scripts. In the process of doing this, it checks if
-     * the library is installed (if not, an RserveLibraryNotFoundException will be thrown).
-     * METHOD NOT USED, LIBRARIES ARE LOADED WITHIN RExecutor.java
-     * @param libName name of the library 
-     * @throws RserveLibraryNotFoundException
-     * @throws IOException 
-     */
-    private static void loadLibrary(String libName) throws RserveLibraryNotFoundException, IOException {        
-        Process proc = null;
-        try {
-            String str = "\"" + rFolder.getAbsolutePath() + "\" -e \"library(" + libName +");\"";
-            proc = executeCmd(str);
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getErrorStream()))) {
-                String line;
-                
-                //For some bizarre reason, with some packages the errorStream prints what should be
-                //printed on an outputStream. Therefore, sometimes we get normal messages instead of
-                //error messages. We take care of this by knowing beforehand which are normal messages.
-                while ((line = br.readLine()) != null) {
-                    //normal message for package XML
-                    if(line.equalsIgnoreCase("Loading required package: methods"))
-                        continue;
-                    throw new RserveLibraryNotFoundException(line);                    
-                }
-            }
-        } catch(IOException ex) {
-            throw ex;
-        } finally {
-            if(proc != null) {
-               proc.destroy();
-               //proc = null;
-            }
-        }         
-    }
+        
     
     private static Process executeCmd(String command) throws IOException {
         return Runtime.getRuntime().exec(command);
@@ -150,7 +95,28 @@ class RserveService {
         StreamHog outputHog = null;
         
         try {
-            String cmd = "\"" + rFolder.getAbsolutePath() + "\" -e \"library(Rserve); Rserve(args='" + args + "')\"";
+            File libraryFolder = new File(RSCRIPT_LIB_PATH);
+            
+            //Here is where we launch R and Rserve.
+            //The format of this command is this:
+            // "absolute\path\to\RScript.exe" -e ".libPaths(new='fixed//path//to//jewelapp//R//library'); .libPaths(); library(Rserve); Rserve(args='')"
+            //This cmd command includes the next actions:
+            //- Execution of an RScript.exe environment in which we launch an instance
+            //  of RServe.exe. This RServe instance is in charge of the R environment, 
+            //  so it's important that we launch that RServe from the correct R folder
+            //  (if there's more than 1 R folder in the computer, is very likely all
+            //   are included in the libPaths() and we might end up executing the RServe from
+            //   a different folder than the R contained in the Jewel app).
+            //- To make sure we execute the RServe found in the Jewel app, we set libPaths()
+            //  with the current path of the R/library folder inside the Jewel app.
+            //- .libPaths() creates an output string that indicates the R library that is being
+            //  considered ONLY for this execution of RScript.exe (this output should ALWAYS
+            //  be ONLY the Jewel app R library folder).
+            //- By the time the action 'library(Rserve)' gets called there's no doubt that 
+            //  the Rserve that's being launched is the one inside the Jewel app folder.            
+            String cmd = "\"" + rFolder.getAbsolutePath() + "\" -e" +  
+                         "\".libPaths(new='" + Utils.fixPath(libraryFolder.getAbsolutePath()) + "'); " + 
+                         ".libPaths(); library(Rserve); Rserve(args='" + args + "')\"";            
             proc = executeCmd(cmd);
 
             //We cannot write "while((lineOutput = brError.readLine()) != null)"
@@ -214,11 +180,10 @@ class RserveService {
                             Thread.currentThread().interrupt(); 
                             return;
                         }
-                        /*if(errorStream) {                           
-                            LogThread.writeToLogHandleError("Err.output: " + line);
-                        }
+                        if(errorStream) 
+                            System.out.println("error: " + line);
                         else
-                            LogThread.writeToLogHandleError("Out.output: " + line);*/
+                            System.out.println("output: " + line);
                     }
                 } 
                 catch (IOException e) {
