@@ -114,7 +114,7 @@ class RserveService {
             //  be ONLY the Jewel app R library folder).
             //- By the time the action 'library(Rserve)' gets called there's no doubt that 
             //  the Rserve that's being launched is the one inside the Jewel app folder.            
-            String cmd = "\"" + rFolder.getAbsolutePath() + "\" -e" +  
+            String cmd = "\"" + rFolder.getAbsolutePath() + "\" -e " +  
                          "\".libPaths(new='" + Utils.fixPath(libraryFolder.getAbsolutePath()) + "'); " + 
                          ".libPaths(); library(Rserve); Rserve(args='" + args + "')\"";            
             proc = executeCmd(cmd);
